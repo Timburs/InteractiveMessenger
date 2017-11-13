@@ -6,3 +6,8 @@ Run by :
 ```
 python InteractiveMessenger.py
 ```
+
+Requirements :
+```
+pip install fbchat
+```
