@@ -1,4 +1,5 @@
 import fbchat
+from fbchat.models import *
 import os
 from getpass import getpass
 
@@ -25,15 +26,22 @@ class fbContainer(object):
         :returns: None
         """
 
-        print "You are interacting with %s\n" % (self.chats[index])
+        thread_type = ThreadType.USER
         msg = ''
-        while (msg != 'q'):
+        while (True):
+            os.system('clear')
+            print "You are interacting with %s.  \
+                   Type 'q' to quit" % (self.chats[index].name)
             messages = self.client.fetchThreadMessages(thread_id=uid, limit=10)
             messages.reverse()  # Put messages in correct order
+
             for message in messages:
-                print message.text
+                print '- ' + message.text
             msg = raw_input(">> ")
-            self.client.send(msg, thread_id=uid, thread_type=ThreadType.USER)
+            if msg == 'q':
+                break
+            self.client.send(Message(text=msg), thread_id=uid,
+                                    thread_type=thread_type)
 
     def logout(self):
         """ Logs the user out """
@@ -50,7 +58,8 @@ def main():
 
     os.system('clear')
     choice = ''
-    chats = fb.getRecentChats()  # Grab chats to populate array
+    chats = fb.getRecentChats()  # Grab chats to pre-populate array
+    printHeader()
 
     while choice != '2':
         printChoices()
@@ -78,9 +87,15 @@ def printChoices():
     """ This function prints the menu for choices. """
 
     print "\n'v' :  View Recent Chats\n" \
-          "'i' : Interact with a user \n" \
-          "'c' : Clear \n" \
+          "'i' : Interact with specified user \n" \
           "'q' : Quit \n"
+
+
+def printHeader():
+    """ This function prints the header. """
+
+    print "Welcome to FB for Terminal. \n" \
+          "To interact, type i + n, where n is index of user listed in 'v'\n"
 
 
 main()
