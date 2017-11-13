@@ -52,7 +52,7 @@ class fbContainer(object):
 
 def main():
 
-    username = "timmyn7@gmail.com"
+    username = raw_input("Enter Username : ")
     password = getpass()
     fb = fbContainer(username, password)
 
