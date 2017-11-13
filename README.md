@@ -2,7 +2,7 @@
 
 Use Facebook Messenger on a terminal!
 
-Run by :
+Run with :
 ```
 python InteractiveMessenger.py
 ```
