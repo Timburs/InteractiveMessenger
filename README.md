@@ -1,3 +1,8 @@
 # Facebook Messenger on Command Line
 
-First Commit
+Use Facebook Messenger on a terminal!
+
+Run by :
+```
+python InteractiveMessenger.py
+```
